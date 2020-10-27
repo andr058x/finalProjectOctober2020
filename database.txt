@@ -1,0 +1,24 @@
+alter table User
+add auth varchar(255) null after userID,
+add name varchar(255) null after auth;
+
+create table exercises_data(
+	`id` int primary key auto_increment,
+    `u_id` int not null,
+    `name` varchar(255) not null,
+    `session` varchar(255) not null,
+    `duration` varchar(255) not null,
+    `pattern` varchar(255) not null,
+    `started_at` date not null,
+    `ended_at` date not null,
+    `info` text null,
+    FOREIGN KEY(u_id) REFERENCES User (userID)
+);
+
+create table notes(
+	`id` int primary key auto_increment,
+    `u_id` int not null,
+    `note` text not null,
+    `is_completed` boolean default 0,
+    FOREIGN KEY(u_id) REFERENCES User (userID)
+);
